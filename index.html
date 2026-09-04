@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SADALACHBIA 777 HYPERSENSITIVITY — Dossier de performances</title>
+  <meta name="description" content="Dossier public de performances pour Lonely Mountains: Downhill — temps, classements et présence publique.">
+  <style>
+    :root{--text:#111;--muted:#666;--bg:#fff;--accent:#0645ad;--badge-bg:#f0f0f0;--note-bg:#fff8df;--note-border:#d99b00;--max-width:1050px}
+    body{font-family:system-ui,sans-serif,Segoe UI,Roboto,Arial;max-width:var(--max-width);margin:28px auto;padding:20px;color:var(--text);line-height:1.55;background:var(--bg)}
+    a{color:var(--accent)}
+    header h1{margin:.2rem 0;font-size:1.6rem}
+    .meta{color:var(--muted);font-size:0.95rem;margin-bottom:.6rem}
+    .badge{display:inline-block;background:var(--badge-bg);border-radius:999px;padding:.25rem .7rem;margin:.2rem;font-weight:600}
+    table{width:100%;border-collapse:collapse;margin-top:1rem;border:1px solid #e6e6e6}
+    caption{caption-side:top;text-align:left;font-weight:700;padding:.5rem 1rem;background:#fafafa}
+    th,td{padding:.75rem;border-bottom:1px solid #eee;text-align:left}
+    th{background:#f7f7f7}
+    .note{background:var(--note-bg);padding:1rem;border-left:4px solid var(--note-border);margin-top:1rem}
+    footer{margin-top:2rem;color:var(--muted);font-size:0.9rem}
+    .download-links{margin-top:1rem}
+    .small{font-size:0.9rem;color:var(--muted)}
+    pre{white-space:pre-wrap;word-break:break-word}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SADALACHBIA 777 HYPERSENSITIVITY</h1>
+    <p class="meta"><strong>Dossier public de performances — Lonely Mountains: Downhill</strong></p>
+    <div aria-hidden="true">
+      <span class="badge">5 × 1er</span>
+      <span class="badge">3 × 2e</span>
+      <span class="badge">1 × 3e</span>
+      <span class="badge">2 × 4e</span>
+      <span class="badge">1 × 5e</span>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Performances documentées</h2>
+      <p class="small">Les résultats ci‑dessous proviennent des captures fournies pour ce dossier. Les temps sont affichés au format mm:ss.xx ou h:mm:ss.</p>
+
+      <table aria-describedby="table-desc" role="table">
+        <caption id="table-desc">Tableau des performances par montagne et piste</caption>
+        <thead>
+          <tr><th>Montagne</th><th>Piste</th><th>Temps</th><th>Rang</th><th>Joueurs affichés</th></tr>
+        </thead>
+        <tbody id="records-body">
+          <!-- Remplissage dynamique via data/records.json -->
+        </tbody>
+      </table>
+
+      <div class="download-links">
+        <button id="download-json">Télécharger les données (JSON)</button>
+        <span class="small"> • Après génération via workflow, le PDF apparaîtra comme artefact dans GitHub Actions.</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Faits marquants</h2>
+      <ul id="highlights">
+        <li>5 premières places mondiales visibles dans les captures.</li>
+        <li>Les cinq résultats Mount Riley documentés sont affichés comme « Top 1 % ».</li>
+        <li>Mount Riley Trail 5 : 4e en 1:10.63, à 0,01 s du 3e.</li>
+        <li>Mount Riley Trail 4 : 3e en 0:51.62.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Présence publique sur le Web</h2>
+      <p>Chaîne YouTube publique avec Daily Rides et parcours :</p>
+      <p><a href="https://www.youtube.com/channel/UCpTeR31_TNDW5X7cv2YcDdQ" target="_blank" rel="noopener noreferrer">Chaîne YouTube — SADALACHBIA 777 HYPERSENSITIVITY</a></p>
+      <div class="note"><strong>Limite :</strong> ce dossier ne prétend pas contenir l'intégralité historique des performances ; les classements sont des instantanés.</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Préparé le 4 septembre 2026. Sources : captures fournies + pages publiques trouvées sur le Web.</p>
+  </footer>
+
+  <script>
+    // Charger les données JSON et remplir le tableau
+    async function loadRecords(){
+      try{
+        const r = await fetch('data/records.json');
+        const data = await r.json();
+        const tbody = document.getElementById('records-body');
+        tbody.innerHTML = '';
+        for(const row of data){
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${row.mountain}</td><td>${row.trail}</td><td><strong>${row.time}</strong></td><td><strong>${row.rank}</strong></td><td>${row.players.toLocaleString()}</td>`;
+          tbody.appendChild(tr);
+        }
+      }catch(e){
+        console.error(e);
+        document.getElementById('records-body').innerHTML = '<tr><td colspan="5">Impossible de charger les données.</td></tr>';
+      }
+    }
+    document.getElementById('download-json').addEventListener('click', ()=>{location.href='data/records.json'});
+    loadRecords();
+  </script>
+</body>
+</html>
