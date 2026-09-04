@@ -1,0 +1,30 @@
+name: Generate PDF
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'index.html'
+      - 'data/**'
+jobs:
+  generate:
+    name: Generate PDF artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install Puppeteer
+        run: |
+          npm init -y
+          npm install puppeteer@latest
+      - name: Generate PDF
+        run: |
+          node -e "const puppeteer=require('puppeteer');(async()=>{const b=await puppeteer.launch({args:['--no-sandbox','--disable-setuid-sandbox']});const p=await b.newPage();await p.goto('file://'+require('path').resolve('index.html'),{waitUntil:'networkidle0'});await p.pdf({path:'SADALACHBIA_dossier.pdf',format:'A4',printBackground:true});await b.close();})();"
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SADALACHBIA_dossier.pdf
+          path: SADALACHBIA_dossier.pdf
