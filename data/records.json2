@@ -1,0 +1,12 @@
+[
+  {"mountain":"Redmoor Peaks","trail":"Trail 3","time":"1:13.38","rank":"1er","players":3944},
+  {"mountain":"Redmoor Peaks","trail":"Trail 4","time":"0:34.73","rank":"1er","players":5407},
+  {"mountain":"Sierra Rivera","trail":"Trail 1","time":"1:11.47","rank":"1er","players":4883},
+  {"mountain":"Sierra Rivera","trail":"Trail 2","time":"1:14.89","rank":"1er","players":3349},
+  {"mountain":"Sierra Rivera","trail":"Trail 3","time":"0:55.15","rank":"1er","players":3494},
+  {"mountain":"Mount Riley","trail":"Trail 1","time":"0:47.18","rank":"4e","players":3094},
+  {"mountain":"Mount Riley","trail":"Trail 2","time":"0:52.90","rank":"5e","players":2364},
+  {"mountain":"Mount Riley","trail":"Trail 3","time":"1:04.77","rank":"2e","players":2119},
+  {"mountain":"Mount Riley","trail":"Trail 4","time":"0:51.62","rank":"3e","players":2322},
+  {"mountain":"Mount Riley","trail":"Trail 5","time":"1:10.63","rank":"4e","players":1497}
+]
